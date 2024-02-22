@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* styles.css */
+.text-h1 {
+  @apply text-4xl font-bold text-blue-500;
+}
+
+.text-h2 {
+  @apply text-3xl font-bold text-green-500;
+}
+
+.text-h3 {
+  @apply text-2xl font-bold text-yellow-500;
+}
+
+.text-h4 {
+  @apply text-xl font-bold text-red-500;
+}
+
+@font-face {
+  font-family: 'Times New Roman';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Times New Roman'), local('TimesNewRoman'), url(https://fonts.gstatic.com/s/timesnewroman/v15/Uy3lIeMWlxSB9D3jN6fNjQ.woff2) format('woff2');
+}

@@ -1,0 +1,19 @@
+
+  .trip {
+display: flex;
+gap: 16px;
+overflow-x: auto;
+padding: 5px
+  }
+  .trip::-webkit-scrollbar {
+    width: 2px;
+    height: 3px;
+    
+    /* background-color: #f9f9fd; */
+  }
+  
+  .trip::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: yellow;
+    
+  }
