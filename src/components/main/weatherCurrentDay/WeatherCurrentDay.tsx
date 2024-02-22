@@ -138,7 +138,7 @@ export default function WeatherCurrentDay({currentWeather, currentTripDate, city
                     </div>
                 </div>
                 <div>
-                    <Title tag="h3">{city}</Title>
+                    <h3 className="m-0 text-xl font-semibold leading-6">{city}</h3>
                 </div>
             </div>
         </div>

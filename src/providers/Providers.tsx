@@ -2,6 +2,7 @@
 
 import { PropsWithChildren } from "react"
 import { SearchProvider } from "./context-provider/SearchProvider"
+import AuthProvider from "./auth-provider/AuthProvider"
 
 interface IProviders {}
 
@@ -11,9 +12,9 @@ export default function Providers({ children }: PropsWithChildren) {
   
 
             <SearchProvider>
-            {/* <AuthProvider> */}
+            <AuthProvider>
 {children}
-            {/* </AuthProvider> */}
+            </AuthProvider>
             </SearchProvider>
     
     )

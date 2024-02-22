@@ -13,6 +13,7 @@ import { IAddTrip, ITrip, ITripItem } from "@/types/trip.interface"
 import { useWeatherTrip } from "@/hooks/useWeatherTrip"
 import { useWeatherCurrentDay } from "@/hooks/useWeatherCurrentDay"
 import { IWeatherDay } from "@/types/weather.interface"
+import { UserProfile } from "../ui/user-profile/UserProfile"
 interface IMain {
   address: string
  }
@@ -44,15 +45,17 @@ export default function MainComponent({ address }: IMain) {
 
   return (
     <>
-      <div className="p-[32px] w-[75%] flex flex-col gap-[16px]">
-        <Link href={'/'} className="flex items-center">
+      <div className="p-[32px] w-[75%] flex flex-col gap-[16px] relative">
+        <Link href={'/'} className="flex items-center w-[350px]">
           <TiWeatherSunny className="w-[36px] h-[36px] mr-1 text-yellow-500" />
           <Title tag='h1'>Weather <span className="font-bold">Forecast</span></Title>
         </Link>
+        
         <TripComponent nameIdActive={nameIdActive} addTrip={addTrip} cities={cities} handleCityClick={handleCityClick} />
         <WeatherComponent weathers={weatherTrip} />
+        <UserProfile />
       </div>
-      <div className="bg-white w-[25%] h-screen" style={{ backgroundImage: 'url(/wing.png)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="bg-white w-[25%] h-screen relative" style={{ backgroundImage: 'url(/wing.png)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <WeatherCurrentDay currentWeather={currentWeather as IWeatherDay} currentTripDate={currentTripDate === '' ? currentTrip?.startDate as string : currentTripDate as string} city={currentDayCity as string} />
       </div>
     </>

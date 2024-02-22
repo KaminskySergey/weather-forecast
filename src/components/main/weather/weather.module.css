@@ -6,11 +6,11 @@
     margin-top: 16px;
     gap: 16px;
     overflow-x: auto;
-    padding: 5px
+    padding: 8px
       }
       .weather::-webkit-scrollbar {
         width: 2px;
-        height: 3px;
+        height: 5px;
         
         /* background-color: #f9f9fd; */
       }

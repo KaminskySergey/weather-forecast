@@ -27,7 +27,7 @@ export default function TripItem({nameIdActive, trip, handleClickItem }: ITripCu
         </div>
         <div className="p-1">
           <Title tag="h3">{trip.city}</Title>
-          <p className="text-gray-500 text-[12px]">{formatCustomDate(trip.startDate)} - {formatCustomDate(trip.endDate)}</p>
+          <p className="text-yellow-500 text-[12px] font-bold">{formatCustomDate(trip.startDate)} - {formatCustomDate(trip.endDate)}</p>
         </div>
       </li>
     );
