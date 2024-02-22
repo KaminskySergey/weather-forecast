@@ -14,35 +14,36 @@ import { useWeatherTrip } from "@/hooks/useWeatherTrip"
 import { useWeatherCurrentDay } from "@/hooks/useWeatherCurrentDay"
 import { IWeatherDay } from "@/types/weather.interface"
 import { UserProfile } from "../ui/user-profile/UserProfile"
+import { useSeachCity } from "@/hooks/useSearchCity"
+import { useSortedTrips } from "@/hooks/useSortedTrips"
 interface IMain {
   address: string
  }
 
 export default function MainComponent({ address }: IMain) {
   const uniqueId = uuidv4();
+  const { filteredCities, setCities } = useSeachCity();
+  const {sortedTrips, setSortByDate, sortByDate, handleDropdownChange} = useSortedTrips(filteredCities)
+  const {  city } = useTripGetLocalStorage()
   const [currentCity, setCurrentCity] = useState(address);
-  const { cities, setCities, city } = useTripGetLocalStorage()
-  const [nameIdActive, setNameIdActive] = useState(cities.length > 0 ? cities[0].id : '');
+  const [nameIdActive, setNameIdActive] = useState(sortedTrips.length > 0 ? sortedTrips[0].id : '');
   const [currentTripDate, setCurrentTripDate] = useState<string | null>('');
-  const { weatherTrip, currentCityFromWeather, currentTrip } = useWeatherTrip(address, nameIdActive, cities)
+  const { weatherTrip, currentCityFromWeather, currentTrip } = useWeatherTrip(address, nameIdActive, sortedTrips)
   const {isLoading, currentWeather, address: currentDayCity} = useWeatherCurrentDay(currentTrip?.city ?? city)
-
   const addTrip = (newCity: IAddTrip) => {
     const newTrip = { ...newCity, id: uniqueId, photo: `/${newCity.city.toLowerCase()}.jpg` };
-    const newCities = [...cities, newTrip];
+    const newCities = [...sortedTrips, newTrip];
 
     setCities(newCities);
 
   };
   const handleCityClick = (city: string, id: string) => {
-    const currentTrip = cities.find((el: ITripItem) => el.id === id)
-    const { startDate } = currentTrip;
+    const currentTrip = sortedTrips.find((el: ITripItem) => el.id === id)
+    const { startDate } = currentTrip as ITripItem;
     setCurrentTripDate(startDate);
-
     setNameIdActive(id)
     setCurrentCity(city);
   }
-
   return (
     <>
       <div className="p-[32px] w-[75%] flex flex-col gap-[16px] relative">
@@ -51,7 +52,7 @@ export default function MainComponent({ address }: IMain) {
           <Title tag='h1'>Weather <span className="font-bold">Forecast</span></Title>
         </Link>
         
-        <TripComponent nameIdActive={nameIdActive} addTrip={addTrip} cities={cities} handleCityClick={handleCityClick} />
+        <TripComponent  nameIdActive={nameIdActive} addTrip={addTrip} sortByDate={sortByDate} handleDropdownChange={handleDropdownChange} sortedTrips={sortedTrips} handleCityClick={handleCityClick} />
         <WeatherComponent weathers={weatherTrip} />
         <UserProfile />
       </div>

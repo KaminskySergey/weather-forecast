@@ -21,8 +21,10 @@ import { IAddTrip, ITripItem } from "@/types/trip.interface";
 interface ITripComponent {
   handleCityClick: (cityName: string, id: string) => void
   addTrip: (values: IAddTrip) => void
-  cities: ITripItem[]
   nameIdActive: string
+  sortedTrips: ITripItem[]
+  handleDropdownChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  sortByDate: 'newest' | 'oldest';
 }
 
 export const trips = [
@@ -52,14 +54,13 @@ export const trips = [
   ];
   
 
-export default function TripComponent({nameIdActive, addTrip, handleCityClick, cities}: ITripComponent) {
+export default function TripComponent({sortedTrips, sortByDate, handleDropdownChange, nameIdActive, addTrip, handleCityClick}: ITripComponent) {
   const [isOpen, setIsOpen] = useState(false);
-  const { filteredCities } = useSeachCity(cities);
-const {sortedTrips, sortByDate, handleDropdownChange} = useSortedTrips(filteredCities)
+  
   const handleToggle = () => {
     setIsOpen((prevState) => !prevState);
   };
-  const {createQueryString, router, pathname} = useParamsNameCity()  
+  const {createQueryString, router, pathname} = useParamsNameCity(sortedTrips)  
   const {elementRef, handleScrollToStart , handleScrollToEnd, handleHorizantalScroll} = useHorizontalScroll()
 
   const handleClickItem = (cityName: string, id: string) => {

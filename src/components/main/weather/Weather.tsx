@@ -4,8 +4,7 @@ import { IWeatherDay } from "@/types/weather.interface";
 import Title from "../../ui/title/title";
 import WeatherItem from "./WeatherItem";
 import WeatherList from "./WeatherList"
-import ButtonScroll from "@/components/ui/button-scroll/ButtonScroll";
-import { useHorizontalScroll } from "@/hooks/useHorizontalScroll";
+
 
 interface IWeather {
   weathers: IWeatherDay[] | null
@@ -97,18 +96,18 @@ const weatherForecast = [
   ];
 
 export default function WeatherComponent({weathers}: IWeather) {
-  const {elementRef, handleScrollToStart , handleScrollToEnd, handleHorizantalScroll} = useHorizontalScroll()
+  // const {elementRef, handleScrollToStart , handleScrollToEnd, handleHorizantalScroll} = useHorizontalScroll()
     return (
         <div className="mt-[16px]">
           <div className="flex items-center justify-between">
             <div>
             <Title tag="h2">Week</Title>
             </div>
-            <div>
+            {/* <div>
               <ButtonScroll elementRef={elementRef} handleScrollToStart={handleScrollToStart} handleScrollToEnd={handleScrollToEnd} handleHorizantalScroll={handleHorizantalScroll}/>
-            </div>
+            </div> */}
           </div>
-          <WeatherList elementRef={elementRef}>
+          <WeatherList>
             {weathers?.map((el,idx) => (
                 <WeatherItem key={idx} item={el} />
             ))}

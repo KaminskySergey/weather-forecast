@@ -11,7 +11,6 @@ interface IDropdown {
 }
 
 export default function Dropdown({ sortByDate, handleDropdownChange }: IDropdown) {
-    console.log(sortByDate)
     return (
         <div>
             <label >

@@ -11,15 +11,7 @@ export const useWeatherTrip = (city: string, nameIdActive: string, cities: ITrip
    const { startDate, endDate} = useTripGetLocalStorage()
     const currentTrip = cities.find(el => el.id === nameIdActive);
     const session = useSession()
-    // useEffect(() => {
-    //     const baseUrl = window.location.href.split('?')[0];
-    
-    //     window.history.replaceState({}, document.title, baseUrl);
-    
-    //     const newUrl = `${baseUrl}?city=${currentTrip?.city}&sort=`;
-    //     window.history.replaceState({}, document.title, newUrl);
-        
-    //   }, [currentTrip?.city]);
+   
   
     useEffect(() => {
       const fetchData = async () => {

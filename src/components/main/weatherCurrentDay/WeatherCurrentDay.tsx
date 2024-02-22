@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 
 import Title from "@/components/ui/title/title";
 import { changeDayFormat } from "@/utils/change-day-format";
-import TimeCalculate from "./Timer";
+
 import Timer from "./Timer";
 import IconsWeatherCurrentDay from "@/components/ui/icons-weather/IconWeatherCurrentDay";
-import { useWeatherCurrentDay } from "@/hooks/useWeatherCurrentDay";
-import useTripGetLocalStorage from "@/hooks/useTripGetLocalStorage";
+
 import { IWeatherDay } from "@/types/weather.interface";
 
 interface IweatherCurrentDay {
@@ -114,8 +113,9 @@ const weatherData = {
 
 
 export default function WeatherCurrentDay({currentWeather, currentTripDate, city }: IweatherCurrentDay) {
-
+console.log(currentWeather?.icon)
     // const {address, isLoading, currentWeather} = useWeatherCurrentDay(city)
+    console.log(currentWeather)
     return (
         <div className="flex items-center justify-center h-[100%] flex-col pl-[24px]">
         <div className="flex flex-col items-center relative">

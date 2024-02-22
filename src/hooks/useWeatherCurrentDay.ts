@@ -4,7 +4,7 @@ import WeatherService from "@/services/weather/weather.service";
 import { IWeatherDay } from "@/types/weather.interface";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import useTripGetLocalStorage from "./useTripGetLocalStorage";
+
 
 export const useWeatherCurrentDay = (city: string) => {
   
@@ -18,6 +18,7 @@ export const useWeatherCurrentDay = (city: string) => {
       try {
         if (session.data) {
                 const {data} = await WeatherService.getWeatherCurrentDay(city);
+                console.log(data, 'da')
                 setCurrentWeather(data.days[0]);
                 setAddress(data.address)
         } else {
