@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import '../globals.css'
-import Providers from '@/providers/Providers'
 import AuthProvider from '@/providers/auth-provider/AuthProvider'
-import { getSession } from '../(main)/layout'
-import { headers } from 'next/headers'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -22,7 +19,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession(headers().get('cookie') ?? '')
   return (
     <html lang="en">
       <body className="m-0 p-0 overflow-x-hidden">

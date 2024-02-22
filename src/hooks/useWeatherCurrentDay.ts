@@ -18,7 +18,6 @@ export const useWeatherCurrentDay = (city: string) => {
       try {
         if (session.data) {
                 const {data} = await WeatherService.getWeatherCurrentDay(city);
-                console.log(data, 'da')
                 setCurrentWeather(data.days[0]);
                 setAddress(data.address)
         } else {
