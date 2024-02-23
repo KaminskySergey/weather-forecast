@@ -117,7 +117,7 @@ export default function WeatherCurrentDay({currentWeather, currentTripDate, city
     return (
         <div className="flex items-center justify-center h-[100%] flex-col pl-[24px]">
         <div className="flex flex-col items-center relative">
-        <div className="absolute top-[60px] left-[-20px] w-[50px] h-[50px]">
+        <div className="absolute top-[60px] left-[-50px] w-[50px] h-[50px]">
                     <IconsWeatherCurrentDay weatherIcon={currentWeather?.icon}/> 
                     </div>
             <div>

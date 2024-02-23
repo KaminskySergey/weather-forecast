@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { signOut } from "next-auth/react"
 
 export const UserProfile = () => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,9 +41,8 @@ export const UserProfile = () => {
 
       {isPopupOpen && (
         <div className="absolute top-10 right-0 bg-white border-gray-300 hover:bg-red-500 rounded shadow">
-          {/* Здесь ваша кнопка Logout */}
           <button
-            // onClick={onLogout}
+            onClick={() => signOut()}
             className="text-black font-bold py-2 px-4 rounded cursor-pointer"
           >
             Logout

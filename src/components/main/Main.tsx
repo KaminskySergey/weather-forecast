@@ -28,8 +28,8 @@ export default function MainComponent({ address }: IMain) {
   const [currentCity, setCurrentCity] = useState(address);
   const [nameIdActive, setNameIdActive] = useState(sortedTrips.length > 0 ? sortedTrips[0].id : '');
   const [currentTripDate, setCurrentTripDate] = useState<string | null>('');
-  const { weatherTrip, currentCityFromWeather, currentTrip } = useWeatherTrip(address, nameIdActive, sortedTrips)
-  const {isLoading, currentWeather, address: currentDayCity} = useWeatherCurrentDay(currentTrip?.city ?? city)
+  const { weatherTrip, currentTrip } = useWeatherTrip(address, nameIdActive, sortedTrips)
+  const {currentWeather, address: currentDayCity} = useWeatherCurrentDay(currentTrip?.city ?? city)
   const addTrip = (newCity: IAddTrip) => {
     const newTrip = { ...newCity, id: uniqueId, photo: `/${newCity.city.toLowerCase()}.jpg` };
     const newCities = [...sortedTrips, newTrip];
