@@ -12,14 +12,17 @@ export const useSeachCity = () => {
     const { searchQuery } = useSearch();
     const localStorageKey = CITIES_TO_LOCAL_STORAGE;
   const [cities, setCities] = useState(() => {
-    const storedData = localStorage.getItem(localStorageKey);
-    return storedData ? JSON.parse(storedData) : staticTrips;
+    if (typeof window !== 'undefined') {
+
+      const storedData = localStorage.getItem(localStorageKey);
+      return storedData ? JSON.parse(storedData) : staticTrips;
+    }
   });
 
   useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(cities));
   }, [cities, localStorageKey]);
-    const filteredCities = cities.filter((city: ITripItem) =>
+    const filteredCities = cities?.filter((city: ITripItem) =>
         city.city.trim().toLowerCase().includes(searchQuery.trim().toLowerCase())
     );
     
